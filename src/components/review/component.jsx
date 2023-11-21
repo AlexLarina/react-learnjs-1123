@@ -1,6 +1,6 @@
-export const Review = ({reviewText}) => {
+export const Review = ({review}) => {
 	return (
-		reviewText && 
-		<li>{reviewText}</li>
+		review && 
+		<li>&quot;{review.text}&quot; - {review.user} ({review.rating}) </li>
 	);
 };

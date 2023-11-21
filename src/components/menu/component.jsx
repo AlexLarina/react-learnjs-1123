@@ -6,7 +6,7 @@ export const Menu = ({menu}) => {
 		<>
 			<h3>Меню</h3>
 			<ul>
-				{menu.map(({id, name}) => <Dish dish={name} key={id}/>)}
+				{menu.map((dish) => <Dish dish={dish} key={dish.id}/>)}
 			</ul>
 		</>
 	);
