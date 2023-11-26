@@ -11,7 +11,6 @@ export const RestaurantsPage = ({restaurants}) => {
 	const [chosenRestaurant, setChosenRestaurant] = useState();
 	
 	const restaurant = restaurants.find((restaurant) => restaurant.name === chosenRestaurant);
-	console.log(restaurant)
 
 	return (
 		<>
@@ -20,11 +19,6 @@ export const RestaurantsPage = ({restaurants}) => {
 				chosenRestaurant && 
 				<div>
 					<RestaurantCard restaurant={restaurant} key={restaurant.id} />
-					{/* {
-						restaurants.map((restaurant) => (
-							<RestaurantCard restaurant={restaurant} key={restaurant.id}/>)
-						)
-					} */}
 				</div>
 			}
 		</>
