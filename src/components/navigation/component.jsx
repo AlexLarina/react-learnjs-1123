@@ -5,7 +5,11 @@ export const Navigation = ({restaurantNames, onRestaurantClick}) => {
 		<nav>
 			{
 				restaurantNames.map(({id, name}) => (
-					<Restaurant name={name} key={`nav-${id}`} onClick={() => onRestaurantClick(name)}/>
+					<Restaurant 
+						name={name} 
+						key={`nav-${id}`} 
+						onClick={() => onRestaurantClick(id)}
+					/>
 				))
 			}
 		</nav>

@@ -8,15 +8,17 @@ export const RestaurantsPage = ({restaurants}) => {
 		name: restaurant.name
 	}));
 
-	const [chosenRestaurant, setChosenRestaurant] = useState();
-	
-	const restaurant = restaurants.find((restaurant) => restaurant.name === chosenRestaurant);
+	const [chosenRestaurantId, setChosenRestaurantId] = useState();
+	const restaurant = restaurants.find((restaurant) => restaurant.id === chosenRestaurantId);
 
 	return (
 		<>
-			<Navigation restaurantNames={restaurantNames} onRestaurantClick={(name) => setChosenRestaurant(name)}/>
+			<Navigation 
+				restaurantNames={restaurantNames} 
+				onRestaurantClick={(name) => setChosenRestaurantId(name)}
+			/>
 			{
-				chosenRestaurant && 
+				restaurant && 
 				<div>
 					<RestaurantCard restaurant={restaurant} key={restaurant.id} />
 				</div>
