@@ -1,6 +1,6 @@
-export const Restaurant = ({name}) => {
+export const Restaurant = ({name, onClick}) => {
 	return (
 		name && 
-		<button>{name}</button>
+		<button onClick={onClick}>{name}</button>
 	);
 };
