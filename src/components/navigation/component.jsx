@@ -1,9 +1,17 @@
 import { Restaurant } from "../restaurant/component";
 
-export const Navigation = ({restaurantNames}) => {
+export const Navigation = ({restaurantNames, onRestaurantClick}) => {
 	return (
 		<nav>
-			{restaurantNames.map(({id, name}) => <Restaurant name={name} key={`nav-${id}`}/>)}
+			{
+				restaurantNames.map(({id, name}) => (
+					<Restaurant 
+						name={name} 
+						key={`nav-${id}`} 
+						onClick={() => onRestaurantClick(id)}
+					/>
+				))
+			}
 		</nav>
 	);
 };
