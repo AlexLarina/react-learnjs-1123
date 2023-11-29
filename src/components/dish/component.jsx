@@ -26,7 +26,8 @@ export const Dish = ({dish}) => {
 					? setDishAmount(DISH_LIMIT.MIN) 
 					: setDishAmount(dishAmount - DISH_LIMIT.STEP)
 				}
-				borderValue={DISH_LIMIT}
+				minValue={DISH_LIMIT.MIN}
+				maxValue={DISH_LIMIT.MAX}
 			/>
 		</>
 	);

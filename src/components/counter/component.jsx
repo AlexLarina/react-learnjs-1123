@@ -1,14 +1,14 @@
-export const Counter = ({value, decrement, increment, borderValue}) => {
+export const Counter = ({value, decrement, increment, minValue, maxValue}) => {
 	return (
 		<>
 			<button 
 				onClick={decrement}
-				disabled={value <= borderValue.MIN}
+				disabled={value <= minValue}
 			>-</button>&nbsp;
 			<span>{value}</span>&nbsp;
 			<button 
 				onClick={increment}
-				disabled={value >= borderValue.MAX}
+				disabled={value >= maxValue}
 			>+</button>
 		</>
 	);

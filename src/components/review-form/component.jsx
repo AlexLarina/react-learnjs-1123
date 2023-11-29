@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useReducer } from 'react';
 import { Counter } from "../counter/component";
 
 const RATING_LIMIT = {
@@ -7,12 +7,27 @@ const RATING_LIMIT = {
 	STEP: 0.5
 }
 
+const DEFAULT_FORM_VALUE = {
+	name: '',
+	text: '',
+	rating: 5,
+};
+
+const reducer = (state, action) => {
+	switch (action.type) {
+		case "setName":
+			return {...state, name: action.payload};
+		case "setText":
+			return {...state, text: action.payload};
+		case "setRating":
+				return {...state, rating: action.payload};
+		default: 
+			return state;
+	}
+};
+
 export const ReviewForm = () => {
-	const [formValue, setFormValue] = useState({
-		name: '',
-		text: '',
-		rating: 5,
-	});
+	const [formValue, dispatch] = useReducer(reducer, DEFAULT_FORM_VALUE);
 
 	return (
 		<>
@@ -24,7 +39,7 @@ export const ReviewForm = () => {
 					type="text" 
 					value={formValue.name}
 					onChange={(event) => 
-						setFormValue({...formValue, name: event.target.value}) 
+						dispatch({ type: "setName", payload: event.target.value})
 					}
 				/>
 			</div>
@@ -36,7 +51,7 @@ export const ReviewForm = () => {
 					type="text" 
 					value={formValue.text}
 					onChange={(event) => 
-						setFormValue({...formValue, text: event.target.value}) 
+						dispatch({ type: "setText", payload: event.target.value})
 					}
 				/>
 			</div>
@@ -46,15 +61,15 @@ export const ReviewForm = () => {
 					value={formValue.rating}
 					increment={
 						() => formValue.rating >= RATING_LIMIT.MAX 
-						? setFormValue({...formValue, rating: RATING_LIMIT.MAX}) 
-						: setFormValue({...formValue, rating: formValue.rating + RATING_LIMIT.STEP}) 
+						? dispatch({ type: "setRating", payload: RATING_LIMIT.MAX})
+						: dispatch({ type: "setRating", payload: formValue.rating + RATING_LIMIT.STEP})
 					}
 					decrement={
 						() => formValue.rating <= RATING_LIMIT.MIN 
-						? setFormValue({...formValue, rating: RATING_LIMIT.MIN}) 
-						: setFormValue({...formValue, rating: formValue.rating - RATING_LIMIT.STEP}) 
-					}
-					borderValue={RATING_LIMIT}
+						? dispatch({ type: "setRating", payload: RATING_LIMIT.MIN})
+						: dispatch({ type: "setRating", payload: formValue.rating - RATING_LIMIT.STEP})			}
+					minValue={RATING_LIMIT.MIN}
+					maxValue={RATING_LIMIT.MAX}
 				/>
 			</div>		
 
