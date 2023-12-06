@@ -1,5 +1,6 @@
 import { useReducer } from 'react';
 import { Counter } from "../counter/component";
+import styles from "./styles.module.css";
 
 const RATING_LIMIT = {
 	MIN: 1,
@@ -31,48 +32,53 @@ export const ReviewForm = () => {
 
 	return (
 		<>
-			<h3>Ваш отзыв</h3>
-			<div>
-				<label htmlFor="name">Name:</label>
-				<input 
-					id="name" 
-					type="text" 
-					value={formValue.name}
-					onChange={(event) => 
-						dispatch({ type: "setName", payload: event.target.value})
-					}
-				/>
+			<h3 className={styles.reviewFormHeader}>Ваш отзыв</h3>
+			<div className={styles.reviewFormWrapper}>
+				<div className={styles.nameWrapper}>
+					<label htmlFor="name">Name:</label>
+					<input 
+						id="name" 
+						type="text"
+						placeholder="Как Вас зовут?"
+						value={formValue.name}
+						onChange={(event) => 
+							dispatch({ type: "setName", payload: event.target.value})
+						}
+					/>
+				</div>
+
+				<div className={styles.ratingWrapper}>
+					<Counter
+						className={styles.ratingCounter}
+						value={formValue.rating}
+						increment={
+							() => formValue.rating >= RATING_LIMIT.MAX 
+							? dispatch({ type: "setRating", payload: RATING_LIMIT.MAX})
+							: dispatch({ type: "setRating", payload: formValue.rating + RATING_LIMIT.STEP})
+						}
+						decrement={
+							() => formValue.rating <= RATING_LIMIT.MIN 
+							? dispatch({ type: "setRating", payload: RATING_LIMIT.MIN})
+							: dispatch({ type: "setRating", payload: formValue.rating - RATING_LIMIT.STEP})			}
+						minValue={RATING_LIMIT.MIN}
+						maxValue={RATING_LIMIT.MAX}
+					/>
+				</div>		
+
+				<div className={styles.textWrapper}>
+					<label htmlFor="text">Review text:</label>
+					<input 
+						id="text" 
+						type="text"
+						placeholder="Поделитесь впечатлениями"
+						value={formValue.text}
+						onChange={(event) => 
+							dispatch({ type: "setText", payload: event.target.value})
+						}
+					/>
+				</div>
+
 			</div>
-
-			<div>
-				<label htmlFor="text">Review text:</label>
-				<input 
-					id="text" 
-					type="text" 
-					value={formValue.text}
-					onChange={(event) => 
-						dispatch({ type: "setText", payload: event.target.value})
-					}
-				/>
-			</div>
-
-			<div>
-				<Counter 
-					value={formValue.rating}
-					increment={
-						() => formValue.rating >= RATING_LIMIT.MAX 
-						? dispatch({ type: "setRating", payload: RATING_LIMIT.MAX})
-						: dispatch({ type: "setRating", payload: formValue.rating + RATING_LIMIT.STEP})
-					}
-					decrement={
-						() => formValue.rating <= RATING_LIMIT.MIN 
-						? dispatch({ type: "setRating", payload: RATING_LIMIT.MIN})
-						: dispatch({ type: "setRating", payload: formValue.rating - RATING_LIMIT.STEP})			}
-					minValue={RATING_LIMIT.MIN}
-					maxValue={RATING_LIMIT.MAX}
-				/>
-			</div>		
-
 		</>
 	);
 };

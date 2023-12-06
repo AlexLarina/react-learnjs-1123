@@ -1,0 +1,80 @@
+.reviewFormHeader {
+	font-size: 16px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  padding: 13px 20px 13px;
+  outline: 0;
+  border: 1px solid black;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.reviewFormWrapper {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+
+  font-size: 16px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  padding: 13px 20px 13px;
+  outline: 0;
+  border: 1px solid black;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.reviewFormWrapper:after {
+  content: "";
+  background-color: #ffe54c57;
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  top: 7px;
+  left: 7px;
+  transition: 0.2s;
+}
+
+.nameWrapper, .ratingWrapper {
+  width: 50%;
+}
+
+.nameWrapper {
+  margin-bottom: 20px;
+}
+
+.textWrapper {
+  width: 100%;
+  margin-left: auto;
+}
+
+.nameWrapper, 
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.nameWrapper input, 
+.textWrapper input {
+  min-height: 48px;
+}
+
+.nameWrapper label, 
+.textWrapper label{
+  font-size: 0;
+}
+
+.nameWrapper input::placeholder,
+.textWrapper input::placeholder {
+  opacity: 0.5;
+  color: black;
+  padding-left: 10px;
+}
+
+.ratingCounter {
+  margin-left: auto;
+}
