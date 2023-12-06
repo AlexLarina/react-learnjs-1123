@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { Counter } from "../counter/component";
 
 const DISH_LIMIT = {
 	MIN: 0,
-	MAX: 5
+	MAX: 5,
+	STEP: 1
 }
 
 export const Dish = ({dish}) => {
@@ -12,19 +14,21 @@ export const Dish = ({dish}) => {
 		dish && 
 		<>
 			{dish.name} ({dish.price}$): {dish.ingredients.join(", ")}&nbsp;
-			<button 
-				onClick={
-					() => dishAmount <= DISH_LIMIT.MIN ? setDishAmount(DISH_LIMIT.MIN) : setDishAmount(dishAmount - 1)
+			<Counter 
+				value={dishAmount}
+				increment={
+					() => dishAmount >= DISH_LIMIT.MAX 
+					? setDishAmount(DISH_LIMIT.MAX) 
+					: setDishAmount(dishAmount + DISH_LIMIT.STEP)
 				}
-				disabled={dishAmount <= DISH_LIMIT.MIN}
-			>-</button>&nbsp;
-			<span>Amount: {dishAmount}</span>&nbsp;
-			<button 
-				onClick={
-					() => dishAmount >= DISH_LIMIT.MAX ? setDishAmount(DISH_LIMIT.MAX) : setDishAmount(dishAmount + 1)
+				decrement={
+					() => dishAmount <= DISH_LIMIT.MIN 
+					? setDishAmount(DISH_LIMIT.MIN) 
+					: setDishAmount(dishAmount - DISH_LIMIT.STEP)
 				}
-				disabled={dishAmount >= DISH_LIMIT.MAX}
-			>+</button>
+				minValue={DISH_LIMIT.MIN}
+				maxValue={DISH_LIMIT.MAX}
+			/>
 		</>
 	);
 };
