@@ -1,3 +1,4 @@
+import "./index.css";
 import { RestaurantsPage } from "./pages/restaurants-page/component";
 
 export const App = ({restaurants}) => {

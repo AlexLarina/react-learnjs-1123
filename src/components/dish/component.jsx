@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Counter } from "../counter/component";
+import styles from "./styles.module.css";
 
 const DISH_LIMIT = {
 	MIN: 0,
@@ -12,8 +13,14 @@ export const Dish = ({dish}) => {
 
 	return (
 		dish && 
-		<>
-			{dish.name} ({dish.price}$): {dish.ingredients.join(", ")}&nbsp;
+		<div className={styles.dishWrapper}>
+			<div className={styles.dishDetails}>
+				<p>
+					<span className={styles.dishName}>{dish.name} </span>
+					<cite>({dish.price} $)</cite>
+				</p>
+				<i>{dish.ingredients.join(", ")}</i>
+			</div>
 			<Counter 
 				value={dishAmount}
 				increment={
@@ -29,6 +36,6 @@ export const Dish = ({dish}) => {
 				minValue={DISH_LIMIT.MIN}
 				maxValue={DISH_LIMIT.MAX}
 			/>
-		</>
+		</div>
 	);
 };

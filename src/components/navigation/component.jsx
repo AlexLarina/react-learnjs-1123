@@ -1,8 +1,10 @@
 import { Restaurant } from "../restaurant/component";
 
+import styles from "./styles.module.css";
+
 export const Navigation = ({restaurantNames, onRestaurantClick}) => {
 	return (
-		<nav>
+		<nav className={styles.restaurantNavigation}>
 			{
 				restaurantNames.map(({id, name}) => (
 					<Restaurant 
